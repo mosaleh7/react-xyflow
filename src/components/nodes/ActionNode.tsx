@@ -168,11 +168,11 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
       )}
 
       {/* Permissions Info */}
-      {permissions?.required && (
+      {permissions?.enabled && (
         <div className="p-3 border-t border-gray-100 rounded-b-lg">
           <div className="flex items-center gap-2 text-xs text-gray-600">
             <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-            <span>Requires: {permissions.roles?.join(', ') || 'Authentication'}</span>
+            <span>Requires: {permissions.requiredRoles?.join(', ') || 'Authentication'}</span>
           </div>
         </div>
       )}
@@ -186,6 +186,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
