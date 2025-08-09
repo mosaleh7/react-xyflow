@@ -91,7 +91,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
               </div>
             </div>
             <div className="text-xs text-gray-500 mt-1">
-              Data points: {content?.chartData?.length || 0}
+              Data source: {content.chartConfig?.dataSource || 'None'}
             </div>
           </div>
         );
@@ -241,6 +241,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
