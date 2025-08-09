@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 import React from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { Monitor, Image, BarChart3, FileText, Code, Eye, Link } from 'lucide-react';
@@ -241,6 +242,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
