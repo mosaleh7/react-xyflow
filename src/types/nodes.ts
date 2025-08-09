@@ -1,12 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NodeProps } from '@xyflow/react';
 import { 
-  WorkflowNode, 
   NodeData, 
   FormField, 
   TableColumn, 
-  Permission,
-  ValidationRule,
-  FieldType 
+  Permission
 } from './workflow';
 
 // Base node props that all custom nodes receive
@@ -587,6 +585,7 @@ export interface NodeValidationWarning {
 }
 
 // All types are already exported above
+
 
 
 
