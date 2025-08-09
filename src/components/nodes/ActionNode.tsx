@@ -95,7 +95,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
             )}
           </button>
           
-          {confirmation?.enabled && primaryAction.requiresConfirmation && (
+          {primaryAction.confirmation?.enabled && (
             <div className="mt-2 flex items-center gap-1 text-xs text-orange-600">
               <AlertTriangle className="w-3 h-3" />
               <span>Requires confirmation</span>
@@ -190,6 +190,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
