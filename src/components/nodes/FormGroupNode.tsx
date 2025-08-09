@@ -9,7 +9,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
 
   const getLayoutIcon = () => {
     switch (layout?.type) {
-      case 'tabs': return <Tabs className="w-4 h-4" />;
+      case 'tabs': return <Grid className="w-4 h-4" />;
       case 'accordion': return <List className="w-4 h-4" />;
       case 'stepper': return <ChevronRight className="w-4 h-4" />;
       default: return <Layers className="w-4 h-4" />;
@@ -206,5 +206,6 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
     </div>
   );
 };
+
 
 
