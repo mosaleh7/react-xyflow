@@ -20,8 +20,7 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
   },
   
-  // Enable experimental features for better performance
-  swcMinify: true,
+  // SWC minification is enabled by default in Next.js 15
   
   // Configure headers for better caching
   async headers() {
@@ -44,4 +43,5 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
 
