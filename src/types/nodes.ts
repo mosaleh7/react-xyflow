@@ -12,7 +12,7 @@ import {
 // Base node props that all custom nodes receive
 export interface BaseNodeProps extends NodeProps {
   id: string;
-  data: NodeData;
+  data: NodeData & Record<string, unknown>;
   selected: boolean;
 }
 
@@ -593,3 +593,4 @@ export type {
   NodeTemplate,
   NodeValidationResult
 };
+
