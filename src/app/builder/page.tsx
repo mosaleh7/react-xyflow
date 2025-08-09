@@ -214,9 +214,13 @@ export default function WorkflowBuilder() {
       case 'displayNode':
         return {
           label: 'New Display',
-          contentType: 'text',
-          content: { value: 'Sample content' },
-          styling: { theme: 'default' }
+          config: {
+            contentType: 'text',
+            content: { value: 'Sample content' },
+            styling: { theme: 'default' },
+            dataBinding: { enabled: false },
+            interactions: { clickable: false }
+          }
         } as DisplayNodeData;
       
       case 'actionNode':
@@ -518,6 +522,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
