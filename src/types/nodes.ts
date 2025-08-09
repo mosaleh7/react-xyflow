@@ -588,10 +588,10 @@ export interface NodeValidationWarning {
 
 // Export commonly used types
 export type {
-  BaseNodeProps,
   NodeCreationOptions,
   NodeTemplate,
   NodeValidationResult
 };
+
 
 
