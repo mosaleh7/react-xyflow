@@ -74,16 +74,20 @@ const initialNodes: Node[] = [
     position: { x: 100, y: 100 },
     data: {
       label: 'Sample Table',
-      columns: [
-        { id: 'name', label: 'Name', type: 'text', sortable: true },
-        { id: 'email', label: 'Email', type: 'email', sortable: true },
-        { id: 'status', label: 'Status', type: 'select', sortable: true }
-      ],
-      pagination: { enabled: true, pageSize: 10 },
-      actions: [
-        { id: 'edit', label: 'Edit', type: 'button', variant: 'primary' },
-        { id: 'delete', label: 'Delete', type: 'button', variant: 'danger' }
-      ]
+      config: {
+        columns: [
+          { id: 'name', label: 'Name', type: 'text', sortable: true },
+          { id: 'email', label: 'Email', type: 'email', sortable: true },
+          { id: 'status', label: 'Status', type: 'select', sortable: true }
+        ],
+        pagination: { enabled: true, pageSize: 10 },
+        actions: [
+          { id: 'edit', label: 'Edit', type: 'button', variant: 'primary' },
+          { id: 'delete', label: 'Delete', type: 'button', variant: 'danger' }
+        ],
+        dataSource: { type: 'static', data: [] },
+        styling: { theme: 'default' }
+      }
     } as TableNodeData,
   },
 ];
@@ -503,3 +507,4 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
