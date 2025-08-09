@@ -11,7 +11,7 @@ export interface WorkflowNode extends Node {
 }
 
 // Core node data interface
-export interface NodeData {
+export interface NodeData extends Record<string, unknown> {
   label: string;
   description?: string;
   config: NodeConfig;
@@ -336,3 +336,4 @@ export type NodeType =
   | 'display' 
   | 'action' 
   | 'permission';
+
