@@ -131,8 +131,8 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
           <div>Actions: {actions?.length || 0}</div>
           <div>Type: {primaryAction?.type || 'custom'}</div>
-          {confirmation?.enabled && <div>Confirmations</div>}
-          {shortcuts?.enabled && <div>Shortcuts</div>}
+          {primaryAction?.confirmation?.enabled && <div>Confirmations</div>}
+          {shortcuts && shortcuts.length > 0 && <div>Shortcuts</div>}
         </div>
 
         {/* Timing Configuration */}
@@ -186,6 +186,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
