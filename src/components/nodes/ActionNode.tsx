@@ -50,8 +50,8 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     }
   };
 
-  const primaryAction = actions?.[0];
-  const secondaryActions = actions?.slice(1, 4);
+  const primaryAction = actions && Array.isArray(actions) && actions.length > 0 ? actions[0] : undefined;
+  const secondaryActions = actions && Array.isArray(actions) ? actions.slice(1, 4) : [];
 
   return (
     <div className={`bg-white border-2 rounded-lg shadow-lg min-w-[250px] max-w-[350px] ${
@@ -186,3 +186,4 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
