@@ -115,18 +115,32 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
           </div>
         );
       
-      case 'link':
+      case 'video':
         return (
           <div className="p-3">
-            <div className="flex items-center gap-2 p-2 border border-blue-200 bg-blue-50 rounded">
-              <Link className="w-4 h-4 text-blue-500" />
-              <div className="flex-1">
-                <div className="text-sm font-medium text-blue-700">
-                  {content?.linkText || 'Link Title'}
+            <div className="w-full h-24 bg-gray-100 border border-gray-300 rounded flex items-center justify-center">
+              <div className="text-center">
+                <Monitor className="w-6 h-6 mx-auto text-gray-500 mb-1" />
+                <div className="text-xs text-gray-600">
+                  Video Content
                 </div>
-                <div className="text-xs text-blue-500 truncate">
-                  {content?.linkUrl || 'https://example.com'}
-                </div>
+              </div>
+            </div>
+            {content.mediaConfig?.src && (
+              <div className="text-xs text-gray-500 mt-1 truncate">
+                {content.mediaConfig.src}
+              </div>
+            )}
+          </div>
+        );
+
+      case 'template':
+        return (
+          <div className="p-3">
+            <div className="bg-gray-50 border border-gray-200 rounded">
+              <div className="text-xs text-gray-500 mb-2">Template Content:</div>
+              <div className="font-mono text-xs text-gray-700 bg-white p-2 rounded border">
+                {content.template || 'Template: {{variable}}'}
               </div>
             </div>
           </div>
@@ -227,6 +241,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
