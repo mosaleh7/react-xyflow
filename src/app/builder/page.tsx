@@ -203,9 +203,12 @@ export default function WorkflowBuilder() {
       case 'formGroupNode':
         return {
           label: 'New Form Group',
-          forms: [],
-          layout: { type: 'tabs' },
-          validation: { enabled: true }
+          config: {
+            forms: [],
+            layout: { type: 'tabs' },
+            validation: { enabled: true },
+            styling: { theme: 'default' }
+          }
         } as FormGroupNodeData;
       
       case 'displayNode':
@@ -515,6 +518,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
