@@ -175,11 +175,15 @@ export default function WorkflowBuilder() {
       case 'tableNode':
         return {
           label: 'New Table',
-          columns: [
-            { id: 'col1', label: 'Column 1', type: 'text', sortable: true }
-          ],
-          pagination: { enabled: true, pageSize: 10 },
-          actions: []
+          config: {
+            columns: [
+              { id: 'col1', label: 'Column 1', type: 'text', sortable: true }
+            ],
+            pagination: { enabled: true, pageSize: 10 },
+            actions: [],
+            dataSource: { type: 'static', data: [] },
+            styling: { theme: 'default' }
+          }
         } as TableNodeData;
       
       case 'formNode':
@@ -507,4 +511,5 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
