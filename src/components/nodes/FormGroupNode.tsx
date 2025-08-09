@@ -29,7 +29,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
   };
 
   const getValidationStatus = (formIndex: number) => {
-    if (validation?.validateOnChange) {
+    if (validation?.validateIndividualForms) {
       return formIndex === 0 ? 'valid' : formIndex === 1 ? 'invalid' : 'pending';
     }
     return 'pending';
@@ -218,6 +218,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
     </div>
   );
 };
+
 
 
 
