@@ -87,10 +87,10 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
           }`}>
             {getActionIcon(primaryAction.type)}
             <span>{primaryAction.label}</span>
-            {shortcuts?.enabled && primaryAction.shortcut && (
+            {shortcuts && shortcuts.length > 0 && (
               <div className="ml-auto flex items-center gap-1">
                 <Keyboard className="w-3 h-3" />
-                <span className="text-xs opacity-75">{primaryAction.shortcut}</span>
+                <span className="text-xs opacity-75">Ctrl+S</span>
               </div>
             )}
           </button>
@@ -190,6 +190,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
