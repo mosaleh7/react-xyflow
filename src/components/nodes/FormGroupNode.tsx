@@ -190,7 +190,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
           <div>Forms: {forms?.length || 0}</div>
           <div>Layout: {layout?.type || 'stack'}</div>
-          {validation?.validateOnChange && <div>Live validation</div>}
+          {validation?.validateIndividualForms && <div>Live validation</div>}
           {navigation?.showProgress && <div>Progress tracking</div>}
         </div>
       </div>
@@ -218,6 +218,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
     </div>
   );
 };
+
 
 
 
