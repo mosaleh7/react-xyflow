@@ -55,7 +55,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
               **Bold text** and *italic text* with [links](example.com)
             </div>
             <div className="text-xs text-gray-500">
-              Markdown content: {content?.markdown?.length || 0} characters
+              Markdown content: {content.value?.length || 0} characters
             </div>
           </div>
         );
@@ -241,6 +241,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
