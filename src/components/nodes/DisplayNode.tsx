@@ -179,7 +179,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
 
       {/* Content Preview */}
       <div className="min-h-[100px]">
-        {renderContentPreview()}
+{renderContentPreview() as React.ReactNode}
       </div>
 
       {/* Data Binding Info */}
@@ -241,6 +241,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
