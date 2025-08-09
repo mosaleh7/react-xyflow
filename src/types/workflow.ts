@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Node, Edge } from '@xyflow/react';
 
 // Base workflow node interface extending React Flow's Node
@@ -312,6 +313,7 @@ export type NodeType =
   | 'display' 
   | 'action' 
   | 'permission';
+
 
 
 
