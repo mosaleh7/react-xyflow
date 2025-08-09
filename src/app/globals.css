@@ -3,20 +3,166 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Workflow Platform Colors */
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --ring: #3b82f6;
+  
+  /* Node Colors */
+  --node-table: #10b981;
+  --node-form: #3b82f6;
+  --node-display: #6366f1;
+  --node-action: #f59e0b;
+  --node-permission: #ef4444;
+  --node-form-group: #8b5cf6;
+  
+  /* Status Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  /* Node Colors */
+  --color-node-table: var(--node-table);
+  --color-node-form: var(--node-form);
+  --color-node-display: var(--node-display);
+  --color-node-action: var(--node-action);
+  --color-node-permission: var(--node-permission);
+  --color-node-form-group: var(--node-form-group);
+  
+  /* Status Colors */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+  
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Animations */
+  --animate-fade-in: fade-in 0.2s ease-in-out;
+  --animate-slide-in: slide-in 0.3s ease-out;
+  --animate-bounce-in: bounce-in 0.4s ease-out;
+  --animate-pulse: pulse 2s infinite;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --secondary: #1e293b;
+    --secondary-foreground: #f1f5f9;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --border: #334155;
+    --input: #1e293b;
   }
+}
+
+/* Custom Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes bounce-in {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.3); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.05); 
+  }
+  70% { 
+    transform: scale(0.9); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.5; 
+  }
+}
+
+/* React Flow Customizations */
+.react-flow__node {
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: var(--background);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.react-flow__node:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  transform: translateY(-1px);
+}
+
+.react-flow__node.selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.react-flow__handle {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--background);
+  background: var(--primary);
+}
+
+.react-flow__edge-path {
+  stroke: var(--border);
+  stroke-width: 2;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--primary);
+  stroke-width: 3;
 }
 
 body {
@@ -24,3 +170,25 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Workflow Platform Specific Styles */
+.workflow-canvas {
+  height: 100vh;
+  width: 100%;
+}
+
+.node-palette {
+  background: var(--muted);
+  border-right: 1px solid var(--border);
+}
+
+.node-inspector {
+  background: var(--muted);
+  border-left: 1px solid var(--border);
+}
+
+.workflow-toolbar {
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
