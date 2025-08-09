@@ -189,11 +189,15 @@ export default function WorkflowBuilder() {
       case 'formNode':
         return {
           label: 'New Form',
-          fields: [
-            { id: 'field1', label: 'Field 1', type: 'text', required: false }
-          ],
-          layout: { columns: 1 },
-          validation: { enabled: true }
+          config: {
+            fields: [
+              { id: 'field1', label: 'Field 1', type: 'text', required: false }
+            ],
+            layout: { columns: 1 },
+            validation: { enabled: true },
+            styling: { theme: 'default' },
+            submission: { method: 'POST', endpoint: '' }
+          }
         } as FormNodeData;
       
       case 'formGroupNode':
@@ -511,5 +515,6 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
