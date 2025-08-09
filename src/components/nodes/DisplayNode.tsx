@@ -107,9 +107,9 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
                 </div>
               </div>
             </div>
-            {content?.iframeUrl && (
+            {content.value && (
               <div className="text-xs text-gray-500 mt-1 truncate">
-                {content.iframeUrl}
+                {content.value}
               </div>
             )}
           </div>
@@ -241,6 +241,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
