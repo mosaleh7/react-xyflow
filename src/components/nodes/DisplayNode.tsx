@@ -7,8 +7,8 @@ import { DisplayNodeProps } from '@/types/nodes';
 export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
   const config = data.config || {};
   const title = config.title || 'Display';
-  const content = config.content || {};
-  const contentType = config.contentType || 'text';
+  const content = config.content || { type: 'text', value: '' };
+  const contentType = content.type || 'text';
   const styling = config.styling || {};
   const dataBinding = config.dataBinding;
 
@@ -226,6 +226,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
