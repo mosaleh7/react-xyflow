@@ -20,7 +20,8 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
       case 'image': return <Image className="w-4 h-4" />;
       case 'chart': return <BarChart3 className="w-4 h-4" />;
       case 'iframe': return <Monitor className="w-4 h-4" />;
-      case 'link': return <Link className="w-4 h-4" />;
+      case 'video': return <Monitor className="w-4 h-4" />;
+      case 'template': return <Code className="w-4 h-4" />;
       default: return <Eye className="w-4 h-4" />;
     }
   };
@@ -226,6 +227,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
