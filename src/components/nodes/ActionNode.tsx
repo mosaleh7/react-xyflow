@@ -70,7 +70,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
       <div className="flex items-center gap-2 p-3 bg-orange-50 border-b border-gray-200 rounded-t-lg">
         <Zap className="w-5 h-5 text-orange-600" />
         <span className="font-semibold text-gray-800">{typeof title === 'string' ? title : 'Actions'}</span>
-        {permissions && typeof permissions === 'object' && 'required' in permissions && permissions.required && (
+        {permissions && permissions.enabled && (
           <div className="ml-auto">
             <div className="w-2 h-2 bg-yellow-400 rounded-full" title="Requires permissions"></div>
           </div>
@@ -188,6 +188,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
