@@ -155,7 +155,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
           </div>
         )}
 
-        {(!layout?.type || layout?.type === 'stack') && (
+        {layout?.type === 'grid' && (
           <div className="space-y-2">
             {forms?.slice(0, 3).map((form, index) => (
               <div key={index} className="p-3 border border-gray-200 rounded bg-gray-50">
@@ -218,6 +218,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
     </div>
   );
 };
+
 
 
 
