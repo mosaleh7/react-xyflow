@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// @ts-nocheck
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/ban-ts-comment */
 import React from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { 
@@ -236,5 +235,6 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
     </div>
   );
 };
+
 
 
