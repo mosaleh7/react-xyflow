@@ -145,7 +145,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
       </div>
 
       {/* Confirmation Dialog Preview */}
-      {confirmation?.enabled && confirmation.message && (
+      {primaryAction?.confirmation?.enabled && (
         <div className="p-3 border-t border-gray-100">
           <div className="bg-yellow-50 border border-yellow-200 rounded p-2">
             <div className="flex items-center gap-2 mb-1">
@@ -153,14 +153,14 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
               <span className="text-xs font-medium text-yellow-800">Confirmation</span>
             </div>
             <div className="text-xs text-yellow-700">
-              {confirmation.message}
+              {primaryAction.confirmation.message}
             </div>
             <div className="flex gap-2 mt-2">
               <button className="px-2 py-1 text-xs bg-yellow-600 text-white rounded">
-                {confirmation.confirmText || 'Confirm'}
+                {primaryAction.confirmation.confirmText || 'Confirm'}
               </button>
               <button className="px-2 py-1 text-xs border border-yellow-300 text-yellow-700 rounded">
-                {confirmation.cancelText || 'Cancel'}
+                {primaryAction.confirmation.cancelText || 'Cancel'}
               </button>
             </div>
           </div>
@@ -186,6 +186,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
