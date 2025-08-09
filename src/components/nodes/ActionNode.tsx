@@ -136,12 +136,10 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
         </div>
 
         {/* Timing Configuration */}
-        {data.timing && (
+        {config.behavior && (
           <div className="mt-2 flex items-center gap-1 text-xs text-gray-500">
             <Clock className="w-3 h-3" />
-            <span>
-              {data.timing.delay ? `Delay: ${data.timing.delay}ms` : 'Immediate'}
-            </span>
+            <span>Immediate execution</span>
           </div>
         )}
       </div>
@@ -188,6 +186,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
