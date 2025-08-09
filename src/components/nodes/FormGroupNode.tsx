@@ -7,10 +7,17 @@ import { FormGroupNodeProps } from '@/types/nodes';
 export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) => {
   const config = data.config || {};
   const title = config.title || 'Form Group';
-  const forms = config.forms || [];
-  const layout = config.layout || { type: 'stack' };
+  const childForms = config.childForms || [];
+  const layout = config.layout || { type: 'tabs' };
   const validation = config.validation;
   const navigation = config.navigation;
+  
+  // Create mock forms for display purposes
+  const forms = childForms.map((id, index) => ({
+    id,
+    title: `Form ${index + 1}`,
+    fields: [{ id: '1', label: 'Sample Field', type: 'text' }]
+  }));
 
   const getLayoutIcon = () => {
     switch (layout?.type) {
@@ -211,6 +218,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
     </div>
   );
 };
+
 
 
 
