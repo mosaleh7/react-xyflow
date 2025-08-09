@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// @ts-nocheck
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/ban-ts-comment */
 import React from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { FileText, Eye, EyeOff, Calendar, Hash, Mail, Type, CheckSquare } from 'lucide-react';
@@ -133,5 +132,6 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
