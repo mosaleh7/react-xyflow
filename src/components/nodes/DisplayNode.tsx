@@ -29,7 +29,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
       case 'text':
         return (
           <div className="p-3 text-sm text-gray-700 leading-relaxed">
-            {content?.text || 'Sample text content will be displayed here...'}
+{(content as any)?.text || 'Sample text content will be displayed here...'}
           </div>
         );
       
@@ -225,4 +225,5 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
