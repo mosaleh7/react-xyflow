@@ -26,7 +26,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     }
   };
 
-  const renderContentPreview = (): React.ReactNode => {
+  const renderContentPreview = () => {
     switch (contentType) {
       case 'text':
         return (
@@ -242,6 +242,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
