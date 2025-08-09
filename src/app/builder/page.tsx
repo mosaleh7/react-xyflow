@@ -226,10 +226,14 @@ export default function WorkflowBuilder() {
       case 'actionNode':
         return {
           label: 'New Action',
-          actions: [
-            { id: 'action1', label: 'Click Me', type: 'button', variant: 'primary' }
-          ],
-          layout: { arrangement: 'horizontal' }
+          config: {
+            actions: [
+              { id: 'action1', label: 'Click Me', type: 'button', variant: 'primary' }
+            ],
+            layout: { arrangement: 'horizontal' },
+            styling: { theme: 'default' },
+            permissions: { enabled: false }
+          }
         } as ActionNodeData;
       
       case 'permissionNode':
@@ -522,6 +526,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
