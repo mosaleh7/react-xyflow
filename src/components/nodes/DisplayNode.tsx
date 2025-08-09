@@ -40,7 +40,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
           <div className="p-3 bg-gray-50 border border-gray-200 rounded">
             <div className="text-xs text-gray-500 mb-2">HTML Content:</div>
             <div className="font-mono text-xs text-gray-700 bg-white p-2 rounded border">
-              {content?.html || '<div>HTML content preview</div>'}
+              {content.value || '<div>HTML content preview</div>'}
             </div>
           </div>
         );
@@ -241,6 +241,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
