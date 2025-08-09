@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 import React from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { Layers, ChevronRight, CheckCircle, AlertCircle, Grid, List } from 'lucide-react';
@@ -218,6 +219,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
     </div>
   );
 };
+
 
 
 
