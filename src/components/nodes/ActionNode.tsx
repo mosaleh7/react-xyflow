@@ -112,7 +112,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
               <button
                 key={index}
                 className={`w-full flex items-center gap-2 px-3 py-2 rounded text-sm font-medium transition-colors ${
-                  action.type === 'delete' 
+                  action.label.toLowerCase().includes('delete') 
                     ? 'bg-red-50 text-red-600 hover:bg-red-100 border border-red-200'
                     : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'
                 }`}
@@ -186,6 +186,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
