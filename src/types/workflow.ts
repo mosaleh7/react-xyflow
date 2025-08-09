@@ -19,40 +19,16 @@ export interface NodeData extends Record<string, unknown> {
   metadata?: Record<string, any>;
 }
 
-// Node configuration based on node type
-export interface NodeConfig {
+// Node configuration based on node type - flexible interface
+export interface NodeConfig extends Record<string, unknown> {
   // Common properties
   title?: string;
   subtitle?: string;
   icon?: string;
   color?: string;
   
-  // Form-specific properties
-  fields?: FormField[];
-  submitAction?: string;
-  validationRules?: ValidationRule[];
-  
-  // Table-specific properties
-  columns?: TableColumn[];
-  dataSource?: string;
-  pagination?: boolean;
-  sortable?: boolean;
-  filterable?: boolean;
-  
-  // Display-specific properties
-  content?: string;
-  contentType?: 'text' | 'html' | 'markdown';
-  template?: string;
-  
-  // Action-specific properties
-  actionType?: 'button' | 'link' | 'trigger';
-  actionTarget?: string;
-  actionPayload?: Record<string, any>;
-  
-  // Permission-specific properties
-  permissions?: Permission[];
-  roles?: string[];
-  conditions?: PermissionCondition[];
+  // Additional properties can be added by specific node types
+  [key: string]: any;
 }
 
 // Form field definition
@@ -336,4 +312,5 @@ export type NodeType =
   | 'display' 
   | 'action' 
   | 'permission';
+
 
