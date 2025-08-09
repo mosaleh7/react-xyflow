@@ -586,12 +586,8 @@ export interface NodeValidationWarning {
   suggestion?: string;
 }
 
-// Export commonly used types
-export type {
-  NodeCreationOptions,
-  NodeTemplate,
-  NodeValidationResult
-};
+// All types are already exported above
+
 
 
 
