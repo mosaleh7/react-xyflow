@@ -5,7 +5,12 @@ import { Layers, ChevronRight, CheckCircle, AlertCircle, Grid, List } from 'luci
 import { FormGroupNodeProps } from '@/types/nodes';
 
 export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) => {
-  const { title, forms, layout, validation, navigation } = data;
+  const config = data.config || {};
+  const title = config.title || 'Form Group';
+  const forms = config.forms || [];
+  const layout = config.layout || { type: 'stack' };
+  const validation = config.validation;
+  const navigation = config.navigation;
 
   const getLayoutIcon = () => {
     switch (layout?.type) {
@@ -206,6 +211,7 @@ export const FormGroupNode: React.FC<FormGroupNodeProps> = ({ data, selected }) 
     </div>
   );
 };
+
 
 
 
