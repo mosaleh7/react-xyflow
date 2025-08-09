@@ -4,7 +4,12 @@ import { Monitor, Image, BarChart3, FileText, Code, Eye, Link } from 'lucide-rea
 import { DisplayNodeProps } from '@/types/nodes';
 
 export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
-  const { title, content, contentType, styling, dataBinding } = data;
+  const config = data.config || {};
+  const title = config.title || 'Display';
+  const content = config.content || {};
+  const contentType = config.contentType || 'text';
+  const styling = config.styling || {};
+  const dataBinding = config.dataBinding;
 
   const getContentIcon = () => {
     switch (contentType) {
@@ -220,3 +225,4 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
