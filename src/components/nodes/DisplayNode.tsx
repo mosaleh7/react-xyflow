@@ -71,9 +71,9 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
                 </div>
               </div>
             </div>
-            {content?.imageUrl && (
+            {content.mediaConfig?.src && (
               <div className="text-xs text-gray-500 mt-1 truncate">
-                {content.imageUrl}
+                {content.mediaConfig.src}
               </div>
             )}
           </div>
@@ -241,6 +241,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
