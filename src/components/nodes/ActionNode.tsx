@@ -119,9 +119,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
               >
                 {getActionIcon(action.type)}
                 <span className="flex-1 text-left">{action.label}</span>
-                {shortcuts?.enabled && action.shortcut && (
-                  <span className="text-xs opacity-60">{action.shortcut}</span>
-                )}
+                <span className="text-xs opacity-60">Ctrl+{index + 1}</span>
               </button>
             ))}
           </div>
@@ -190,6 +188,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
