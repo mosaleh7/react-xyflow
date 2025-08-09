@@ -18,9 +18,11 @@ import {
 import { ActionNodeProps } from '@/types/nodes';
 
 export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
-  const { title, actions, permissions } = data.config || {};
-  const confirmation = data.config?.behavior;
-  const shortcuts = data.config?.behavior?.keyboardShortcuts;
+  const config = data.config || {};
+  const title = config.title || 'Actions';
+  const actions = config.actions || [];
+  const permissions = config.permissions;
+  const shortcuts = config.behavior?.keyboardShortcuts || [];
 
   const getActionIcon = (actionType: string) => {
     switch (actionType) {
@@ -188,6 +190,7 @@ export const ActionNode: React.FC<ActionNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
