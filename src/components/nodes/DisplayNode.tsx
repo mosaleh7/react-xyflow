@@ -86,7 +86,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
               <div className="text-center">
                 <BarChart3 className="w-6 h-6 mx-auto text-blue-500 mb-1" />
                 <div className="text-xs text-blue-600 font-medium">
-                  {content?.chartType || 'Bar'} Chart
+                  {content.chartConfig?.type || 'Bar'} Chart
                 </div>
               </div>
             </div>
@@ -241,6 +241,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
