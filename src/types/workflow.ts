@@ -182,7 +182,7 @@ export interface WorkflowEdge extends Edge {
 
 export type EdgeType = 'default' | 'straight' | 'step' | 'smoothstep' | 'custom';
 
-export interface EdgeData {
+export interface EdgeData extends Record<string, unknown> {
   label?: string;
   condition?: string;
   transform?: DataTransform;
@@ -312,5 +312,6 @@ export type NodeType =
   | 'display' 
   | 'action' 
   | 'permission';
+
 
 
