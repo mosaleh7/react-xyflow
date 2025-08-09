@@ -1,4 +1,4 @@
-import { Node, Edge, Connection } from '@xyflow/react';
+import { Node, Edge } from '@xyflow/react';
 
 // Base workflow node interface extending React Flow's Node
 export interface WorkflowNode extends Node {
@@ -312,6 +312,7 @@ export type NodeType =
   | 'display' 
   | 'action' 
   | 'permission';
+
 
 
 
