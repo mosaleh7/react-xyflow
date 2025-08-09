@@ -26,7 +26,6 @@ import { ActionNode } from '@/components/nodes/ActionNode';
 import { PermissionNode } from '@/components/nodes/PermissionNode';
 
 // Import types
-import { WorkflowNode } from '@/types/workflow';
 import { 
   TableNodeData, 
   FormNodeData, 
@@ -42,10 +41,7 @@ import {
   Save, 
   Play, 
   Settings, 
-  Trash2, 
-  Copy, 
-  Undo, 
-  Redo,
+  Trash2,
   Table,
   FileText,
   Layers,
@@ -530,6 +526,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
