@@ -179,8 +179,10 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
 
       {/* Content Preview */}
       <div className="min-h-[100px]">
-        {/* @ts-ignore */}
-        {renderContentPreview()}
+        <div className="p-3 text-center text-gray-500">
+          <div className="text-sm font-medium">{contentType} Content</div>
+          <div className="text-xs mt-1">Preview: {content.value || 'No content'}</div>
+        </div>
       </div>
 
       {/* Data Binding Info */}
@@ -242,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
