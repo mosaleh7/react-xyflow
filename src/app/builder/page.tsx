@@ -589,12 +589,12 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
               <label key={action} className="flex items-center space-x-2">
                 <input
                   type="checkbox"
-                  checked={config.actions?.includes(action) || false}
+                  checked={Array.isArray(config.actions) && config.actions.includes(action)}
                   onChange={(e) => {
-                    const currentActions = config.actions || [];
+                    const currentActions = Array.isArray(config.actions) ? config.actions : [];
                     const newActions = e.target.checked
                       ? [...currentActions, action]
-                      : currentActions.filter((a: string) => a !== action);
+                      : currentActions.filter((a: unknown) => a !== action);
                     updateNodeData('config.actions', newActions);
                   }}
                   className="rounded"
@@ -1094,6 +1094,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
