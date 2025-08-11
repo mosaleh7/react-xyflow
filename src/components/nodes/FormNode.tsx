@@ -90,7 +90,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
           </div>
         ))}
 
-        {fields && fields.length > 4 && (
+        {Array.isArray(fields) && fields.length > 4 && (
           <div className="text-xs text-gray-500 text-center py-2 border-t border-gray-100">
             +{fields.length - 4} more fields
           </div>
@@ -132,6 +132,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
