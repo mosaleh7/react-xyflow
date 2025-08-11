@@ -670,7 +670,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
           <label className="flex items-center space-x-2">
             <input
               type="checkbox"
-              checked={config.submission?.confirmBeforeSubmit || false}
+              checked={Boolean((config.submission as Record<string, unknown>)?.confirmBeforeSubmit)}
               onChange={(e) => updateNodeData('config.submission.confirmBeforeSubmit', e.target.checked)}
               className="rounded"
             />
@@ -1094,6 +1094,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
