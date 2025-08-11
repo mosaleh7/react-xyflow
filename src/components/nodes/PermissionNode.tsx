@@ -125,8 +125,8 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
               <span className="text-xs font-medium text-blue-800">Time Restrictions</span>
             </div>
             <div className="text-xs text-blue-700">
-              {timeRestrictions.allowedHours ? 
-                `${timeRestrictions.allowedHours.start} - ${timeRestrictions.allowedHours.end}` :
+              {(timeRestrictions as Record<string, unknown>).allowedHours ? 
+                `${((timeRestrictions as Record<string, unknown>).allowedHours as Record<string, unknown>).start} - ${((timeRestrictions as Record<string, unknown>).allowedHours as Record<string, unknown>).end}` :
                 'Business hours only'
               }
             </div>
@@ -235,6 +235,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
     </div>
   );
 };
+
 
 
 
