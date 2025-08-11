@@ -889,14 +889,12 @@ export default function WorkflowBuilder() {
         return {
           label: 'New Permission',
           config: {
-            rules: [
-              { id: 'rule1', type: 'grant', condition: 'always', resource: '*' }
-            ],
-            context: { userRequired: true },
-            restrictions: { timeRestrictions: { enabled: false } },
-            audit: { enabled: true, retention: 30 }
+            name: 'New Permission',
+            resource: 'users',
+            actions: ['read'],
+            roles: ['user']
           }
-        } as PermissionNodeData;
+        };
       
       default:
         return { label: 'New Node' };
@@ -1098,6 +1096,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
