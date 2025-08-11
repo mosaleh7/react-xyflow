@@ -121,7 +121,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
     }));
   };
 
-  const updateNodeData = (path: string, value: any) => {
+  const updateNodeData = (path: string, value: unknown) => {
     const pathArray = path.split('.');
     const updatedNode = { ...node };
     let current = updatedNode.data;
@@ -1091,6 +1091,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
