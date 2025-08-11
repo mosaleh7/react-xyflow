@@ -877,14 +877,13 @@ export default function WorkflowBuilder() {
         return {
           label: 'New Action',
           config: {
-            actions: [
-              { id: 'action1', label: 'Click Me', type: 'button', variant: 'primary' }
-            ],
-            layout: { arrangement: 'horizontal' },
-            styling: { theme: 'default' },
-            permissions: { enabled: false }
+            label: 'Click Me',
+            actionType: 'button',
+            style: 'primary',
+            target: '',
+            confirmation: { enabled: false }
           }
-        } as ActionNodeData;
+        };
       
       case 'permissionNode':
         return {
@@ -1099,6 +1098,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
