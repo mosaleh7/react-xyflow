@@ -217,7 +217,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
       </div>
 
       {/* Interactive Elements */}
-      {data.interactive && (
+      {Boolean(data.interactive) && (
         <div className="p-3 border-t border-gray-100 rounded-b-lg">
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-600">Interactive</span>
@@ -244,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
