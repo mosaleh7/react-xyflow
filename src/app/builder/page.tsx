@@ -539,7 +539,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             </label>
             <input
               type="text"
-              value={config.confirmation?.message || ''}
+              value={String(confirmation.message || '')}
               onChange={(e) => updateNodeData('config.confirmation.message', e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
               placeholder="Are you sure you want to proceed?"
@@ -1094,6 +1094,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
