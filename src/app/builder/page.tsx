@@ -513,7 +513,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
           </label>
           <input
             type="text"
-            value={config.target || ''}
+            value={String(config.target || '')}
             onChange={(e) => updateNodeData('config.target', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
             placeholder="URL, API endpoint, or form ID"
@@ -1094,6 +1094,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
