@@ -33,7 +33,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
       <div className="flex items-center gap-2 p-3 bg-green-50 border-b border-gray-200 rounded-t-lg">
         <FileText className="w-5 h-5 text-green-600" />
         <span className="font-semibold text-gray-800">{String(title || 'Form')}</span>
-        {validation?.required && (
+        {Array.isArray(validation) && validation.some(rule => rule.type === 'required') && (
           <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Required</span>
         )}
       </div>
@@ -132,6 +132,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
