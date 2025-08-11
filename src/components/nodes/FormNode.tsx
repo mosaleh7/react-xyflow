@@ -110,9 +110,9 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
         
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
           <div>Fields: {Array.isArray(fields) ? fields.length : 0}</div>
-          <div>Theme: {theme?.variant || 'default'}</div>
-          {validation?.showErrors && <div>Live validation</div>}
-          {data.submitAction && <div>Submit: {data.submitAction}</div>}
+          <div>Theme: {String((theme as Record<string, unknown>)?.variant || 'default')}</div>
+          {Boolean((validation as Record<string, unknown>)?.showErrors) && <div>Live validation</div>}
+          {Boolean((data as Record<string, unknown>).submitAction) && <div>Submit: {String((data as Record<string, unknown>).submitAction)}</div>}
         </div>
       </div>
 
@@ -132,6 +132,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
