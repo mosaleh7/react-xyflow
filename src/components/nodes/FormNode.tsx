@@ -101,7 +101,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
       <div className="p-3 bg-gray-50 border-t border-gray-200">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-medium text-gray-600">Configuration</span>
-          {(layout as Record<string, unknown>)?.columns && Number((layout as Record<string, unknown>).columns) > 1 && (
+          {Boolean((layout as Record<string, unknown>)?.columns) && Number((layout as Record<string, unknown>).columns) > 1 && (
             <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">
               {Number((layout as Record<string, unknown>).columns)} columns
             </span>
@@ -132,6 +132,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
