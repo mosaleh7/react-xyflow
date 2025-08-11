@@ -40,7 +40,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
 
       {/* Form Preview */}
       <div className="p-3 space-y-3">
-        {fields?.slice(0, 4).map((field, index) => (
+        {Array.isArray(fields) && fields.slice(0, 4).map((field, index) => (
           <div key={index} className="space-y-1">
             <div className="flex items-center gap-2">
               {getFieldIcon(field.type)}
@@ -132,6 +132,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
