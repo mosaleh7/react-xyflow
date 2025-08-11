@@ -109,7 +109,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
         </div>
         
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
-          <div>Fields: {fields?.length || 0}</div>
+          <div>Fields: {Array.isArray(fields) ? fields.length : 0}</div>
           <div>Theme: {theme?.variant || 'default'}</div>
           {validation?.showErrors && <div>Live validation</div>}
           {data.submitAction && <div>Submit: {data.submitAction}</div>}
@@ -132,6 +132,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
