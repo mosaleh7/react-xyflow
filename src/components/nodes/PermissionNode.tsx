@@ -117,7 +117,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
       </div>
 
       {/* Time Restrictions */}
-      {timeRestrictions?.enabled && (
+      {Boolean((timeRestrictions as Record<string, unknown>)?.enabled) && (
         <div className="px-3 pb-3">
           <div className="bg-blue-50 border border-blue-200 rounded p-2">
             <div className="flex items-center gap-2 mb-1">
@@ -235,6 +235,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
     </div>
   );
 };
+
 
 
 
