@@ -100,6 +100,643 @@ const initialNodes: Node[] = [
 
 const initialEdges: Edge[] = [];
 
+// Node Inspector Component
+interface NodeInspectorProps {
+  node: Node;
+  onUpdateNode: (node: Node) => void;
+  onDeleteNode: () => void;
+}
+
+const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDeleteNode }) => {
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    basic: true,
+    config: true,
+    styling: false,
+    advanced: false
+  });
+
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  const updateNodeData = (path: string, value: any) => {
+    const pathArray = path.split('.');
+    const updatedNode = { ...node };
+    let current = updatedNode.data;
+    
+    for (let i = 0; i < pathArray.length - 1; i++) {
+      if (!current[pathArray[i]]) {
+        current[pathArray[i]] = {};
+      }
+      current = current[pathArray[i]];
+    }
+    
+    current[pathArray[pathArray.length - 1]] = value;
+    onUpdateNode(updatedNode);
+  };
+
+  const renderBasicProperties = () => (
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Node ID
+        </label>
+        <input
+          type="text"
+          value={node.id}
+          readOnly
+          className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-sm"
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Node Type
+        </label>
+        <input
+          type="text"
+          value={node.type || 'default'}
+          readOnly
+          className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-sm"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Label
+        </label>
+        <input
+          type="text"
+          value={node.data?.label || ''}
+          onChange={(e) => updateNodeData('label', e.target.value)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Position
+        </label>
+        <div className="grid grid-cols-2 gap-2">
+          <input
+            type="number"
+            placeholder="X"
+            value={node.position.x}
+            onChange={(e) => {
+              const updatedNode = { 
+                ...node, 
+                position: { ...node.position, x: parseInt(e.target.value) || 0 } 
+              };
+              onUpdateNode(updatedNode);
+            }}
+            className="px-3 py-2 border border-gray-300 rounded-md text-sm"
+          />
+          <input
+            type="number"
+            placeholder="Y"
+            value={node.position.y}
+            onChange={(e) => {
+              const updatedNode = { 
+                ...node, 
+                position: { ...node.position, y: parseInt(e.target.value) || 0 } 
+              };
+              onUpdateNode(updatedNode);
+            }}
+            className="px-3 py-2 border border-gray-300 rounded-md text-sm"
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderTableNodeConfig = () => {
+    const config = node.data?.config || {};
+    
+    return (
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Table Title
+          </label>
+          <input
+            type="text"
+            value={config.title || ''}
+            onChange={(e) => updateNodeData('config.title', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Data Source
+          </label>
+          <select
+            value={config.dataSource || 'static'}
+            onChange={(e) => updateNodeData('config.dataSource', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          >
+            <option value="static">Static Data</option>
+            <option value="api">API Endpoint</option>
+            <option value="database">Database Query</option>
+            <option value="form">Form Submissions</option>
+          </select>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={config.pagination || false}
+                onChange={(e) => updateNodeData('config.pagination', e.target.checked)}
+                className="rounded"
+              />
+              <span className="text-sm text-gray-700">Pagination</span>
+            </label>
+          </div>
+          <div>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={config.sortable || false}
+                onChange={(e) => updateNodeData('config.sortable', e.target.checked)}
+                className="rounded"
+              />
+              <span className="text-sm text-gray-700">Sortable</span>
+            </label>
+          </div>
+          <div>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={config.filterable || false}
+                onChange={(e) => updateNodeData('config.filterable', e.target.checked)}
+                className="rounded"
+              />
+              <span className="text-sm text-gray-700">Filterable</span>
+            </label>
+          </div>
+          <div>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={config.searchable || false}
+                onChange={(e) => updateNodeData('config.searchable', e.target.checked)}
+                className="rounded"
+              />
+              <span className="text-sm text-gray-700">Searchable</span>
+            </label>
+          </div>
+        </div>
+
+        {config.pagination && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Page Size
+            </label>
+            <input
+              type="number"
+              value={config.pageSize || 10}
+              onChange={(e) => updateNodeData('config.pageSize', parseInt(e.target.value) || 10)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+              min="1"
+              max="100"
+            />
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const renderFormNodeConfig = () => {
+    const config = node.data?.config || {};
+    
+    return (
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Form Title
+          </label>
+          <input
+            type="text"
+            value={config.title || ''}
+            onChange={(e) => updateNodeData('config.title', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Submit Action
+          </label>
+          <select
+            value={config.submitAction || 'save'}
+            onChange={(e) => updateNodeData('config.submitAction', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          >
+            <option value="save">Save to Database</option>
+            <option value="email">Send Email</option>
+            <option value="api">Call API</option>
+            <option value="redirect">Redirect</option>
+          </select>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Layout Columns
+            </label>
+            <select
+              value={config.layout?.columns || 1}
+              onChange={(e) => updateNodeData('config.layout.columns', parseInt(e.target.value))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+            >
+              <option value={1}>1 Column</option>
+              <option value={2}>2 Columns</option>
+              <option value={3}>3 Columns</option>
+            </select>
+          </div>
+          <div>
+            <label className="flex items-center space-x-2 mt-6">
+              <input
+                type="checkbox"
+                checked={config.validation?.required || false}
+                onChange={(e) => updateNodeData('config.validation.required', e.target.checked)}
+                className="rounded"
+              />
+              <span className="text-sm text-gray-700">Required</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderDisplayNodeConfig = () => {
+    const config = node.data?.config || {};
+    
+    return (
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Display Title
+          </label>
+          <input
+            type="text"
+            value={config.title || ''}
+            onChange={(e) => updateNodeData('config.title', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Content Type
+          </label>
+          <select
+            value={config.content?.type || 'text'}
+            onChange={(e) => updateNodeData('config.content.type', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          >
+            <option value="text">Plain Text</option>
+            <option value="html">HTML</option>
+            <option value="markdown">Markdown</option>
+            <option value="template">Template</option>
+            <option value="chart">Chart</option>
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Content
+          </label>
+          <textarea
+            value={config.content?.value || ''}
+            onChange={(e) => updateNodeData('config.content.value', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+            rows={4}
+            placeholder="Enter your content here..."
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Layout
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            <select
+              value={config.layout?.width || 'auto'}
+              onChange={(e) => updateNodeData('config.layout.width', e.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-md text-sm"
+            >
+              <option value="auto">Auto Width</option>
+              <option value="full">Full Width</option>
+              <option value="fixed">Fixed Width</option>
+            </select>
+            <select
+              value={config.layout?.alignment || 'left'}
+              onChange={(e) => updateNodeData('config.layout.alignment', e.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-md text-sm"
+            >
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+              <option value="right">Right</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderActionNodeConfig = () => {
+    const config = node.data?.config || {};
+    
+    return (
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Button Text
+          </label>
+          <input
+            type="text"
+            value={config.label || ''}
+            onChange={(e) => updateNodeData('config.label', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Action Type
+          </label>
+          <select
+            value={config.actionType || 'button'}
+            onChange={(e) => updateNodeData('config.actionType', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          >
+            <option value="button">Button</option>
+            <option value="link">Link</option>
+            <option value="submit">Submit Form</option>
+            <option value="api">API Call</option>
+            <option value="navigation">Navigate</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Button Style
+          </label>
+          <select
+            value={config.style || 'primary'}
+            onChange={(e) => updateNodeData('config.style', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          >
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+            <option value="danger">Danger</option>
+            <option value="outline">Outline</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Action Target
+          </label>
+          <input
+            type="text"
+            value={config.target || ''}
+            onChange={(e) => updateNodeData('config.target', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+            placeholder="URL, API endpoint, or form ID"
+          />
+        </div>
+
+        <div>
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={config.confirmation?.enabled || false}
+              onChange={(e) => updateNodeData('config.confirmation.enabled', e.target.checked)}
+              className="rounded"
+            />
+            <span className="text-sm text-gray-700">Require Confirmation</span>
+          </label>
+        </div>
+
+        {config.confirmation?.enabled && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Confirmation Message
+            </label>
+            <input
+              type="text"
+              value={config.confirmation?.message || ''}
+              onChange={(e) => updateNodeData('config.confirmation.message', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+              placeholder="Are you sure you want to proceed?"
+            />
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const renderPermissionNodeConfig = () => {
+    const config = node.data?.config || {};
+    
+    return (
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Permission Name
+          </label>
+          <input
+            type="text"
+            value={config.name || ''}
+            onChange={(e) => updateNodeData('config.name', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Resource
+          </label>
+          <input
+            type="text"
+            value={config.resource || ''}
+            onChange={(e) => updateNodeData('config.resource', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+            placeholder="e.g., users, posts, workouts"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Actions
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            {['create', 'read', 'update', 'delete'].map((action) => (
+              <label key={action} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={config.actions?.includes(action) || false}
+                  onChange={(e) => {
+                    const currentActions = config.actions || [];
+                    const newActions = e.target.checked
+                      ? [...currentActions, action]
+                      : currentActions.filter((a: string) => a !== action);
+                    updateNodeData('config.actions', newActions);
+                  }}
+                  className="rounded"
+                />
+                <span className="text-sm text-gray-700 capitalize">{action}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            User Roles
+          </label>
+          <input
+            type="text"
+            value={config.roles?.join(', ') || ''}
+            onChange={(e) => updateNodeData('config.roles', e.target.value.split(',').map((r: string) => r.trim()).filter(Boolean))}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+            placeholder="admin, user, trainer (comma-separated)"
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const renderFormGroupNodeConfig = () => {
+    const config = node.data?.config || {};
+    
+    return (
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Group Title
+          </label>
+          <input
+            type="text"
+            value={config.title || ''}
+            onChange={(e) => updateNodeData('config.title', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Layout Style
+          </label>
+          <select
+            value={config.layout?.style || 'tabs'}
+            onChange={(e) => updateNodeData('config.layout.style', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+          >
+            <option value="tabs">Tabs</option>
+            <option value="accordion">Accordion</option>
+            <option value="wizard">Wizard</option>
+            <option value="grid">Grid</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={config.validation?.validateAll || false}
+              onChange={(e) => updateNodeData('config.validation.validateAll', e.target.checked)}
+              className="rounded"
+            />
+            <span className="text-sm text-gray-700">Validate All Forms</span>
+          </label>
+        </div>
+
+        <div>
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={config.submission?.confirmBeforeSubmit || false}
+              onChange={(e) => updateNodeData('config.submission.confirmBeforeSubmit', e.target.checked)}
+              className="rounded"
+            />
+            <span className="text-sm text-gray-700">Confirm Before Submit</span>
+          </label>
+        </div>
+      </div>
+    );
+  };
+
+  const renderNodeConfiguration = () => {
+    switch (node.type) {
+      case 'tableNode':
+        return renderTableNodeConfig();
+      case 'formNode':
+        return renderFormNodeConfig();
+      case 'displayNode':
+        return renderDisplayNodeConfig();
+      case 'actionNode':
+        return renderActionNodeConfig();
+      case 'permissionNode':
+        return renderPermissionNodeConfig();
+      case 'formGroupNode':
+        return renderFormGroupNodeConfig();
+      default:
+        return <div className="text-sm text-gray-500">No configuration available for this node type.</div>;
+    }
+  };
+
+  const renderSection = (title: string, key: string, content: React.ReactNode) => (
+    <div className="border border-gray-200 rounded-lg">
+      <button
+        onClick={() => toggleSection(key)}
+        className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50"
+      >
+        <span className="font-medium text-gray-800">{title}</span>
+        {expandedSections[key] ? (
+          <ChevronDown className="w-4 h-4 text-gray-500" />
+        ) : (
+          <ChevronRight className="w-4 h-4 text-gray-500" />
+        )}
+      </button>
+      {expandedSections[key] && (
+        <div className="p-3 border-t border-gray-200">
+          {content}
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="space-y-4">
+      {renderSection('Basic Properties', 'basic', renderBasicProperties())}
+      {renderSection('Configuration', 'config', renderNodeConfiguration())}
+      
+      <div className="pt-4 border-t border-gray-200">
+        <button
+          onClick={onDeleteNode}
+          className="w-full flex items-center justify-center space-x-2 px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          <Trash2 size={16} />
+          <span>Delete Node</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 // Node palette items
 const nodeTemplates = [
   {
@@ -455,6 +1092,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
