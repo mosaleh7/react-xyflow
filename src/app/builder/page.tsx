@@ -298,7 +298,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             </label>
             <input
               type="number"
-              value={config.pageSize || 10}
+              value={Number(config.pageSize) || 10}
               onChange={(e) => updateNodeData('config.pageSize', parseInt(e.target.value) || 10)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
               min="1"
@@ -1091,6 +1091,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
