@@ -75,7 +75,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
       {/* Permission Rules */}
       <div className="p-3">
         <div className="space-y-2">
-          {rules?.slice(0, 4).map((rule, index) => {
+          {Array.isArray(rules) && rules.slice(0, 4).map((rule: any, index: number) => {
             const status = getRuleStatus(rule);
             return (
               <div key={index} className="flex items-center justify-between p-2 border border-gray-200 rounded">
@@ -235,6 +235,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
     </div>
   );
 };
+
 
 
 
