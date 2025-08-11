@@ -204,7 +204,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
       <div className="p-3 bg-gray-50 border-t border-gray-200">
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
           <div>Type: {contentType || 'text'}</div>
-          <div>Theme: {(styling as Record<string, unknown>)?.theme || 'default'}</div>
+          <div>Theme: {String((styling as Record<string, unknown>)?.theme || 'default')}</div>
           {Boolean(styling?.responsive) && <div>Responsive</div>}
           {Boolean(styling?.animation) && <div>Animated</div>}
         </div>
@@ -244,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
