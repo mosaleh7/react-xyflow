@@ -233,7 +233,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             Data Source
           </label>
           <select
-            value={config.dataSource || 'static'}
+            value={String(config.dataSource || 'static')}
             onChange={(e) => updateNodeData('config.dataSource', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
           >
@@ -1091,6 +1091,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
