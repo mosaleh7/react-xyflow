@@ -209,7 +209,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
           {Boolean((styling as Record<string, unknown>)?.animation) && <div>Animated</div>}
         </div>
         
-        {Boolean(styling?.customCSS) && (
+        {Boolean((styling as Record<string, unknown>)?.customCSS) && (
           <div className="mt-2 text-xs text-gray-500">
             Custom styling applied
           </div>
@@ -244,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
