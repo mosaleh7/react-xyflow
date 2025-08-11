@@ -362,7 +362,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             <label className="flex items-center space-x-2 mt-6">
               <input
                 type="checkbox"
-                checked={config.validation?.required || false}
+                checked={Boolean((config.validation as Record<string, unknown>)?.required)}
                 onChange={(e) => updateNodeData('config.validation.required', e.target.checked)}
                 className="rounded"
               />
@@ -1091,6 +1091,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
