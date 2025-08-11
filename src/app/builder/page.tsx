@@ -611,7 +611,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
           </label>
           <input
             type="text"
-            value={config.roles?.join(', ') || ''}
+            value={Array.isArray(config.roles) ? config.roles.join(', ') : ''}
             onChange={(e) => updateNodeData('config.roles', e.target.value.split(',').map((r: string) => r.trim()).filter(Boolean))}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
             placeholder="admin, user, trainer (comma-separated)"
@@ -1094,6 +1094,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
