@@ -249,7 +249,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
-                checked={config.pagination || false}
+                checked={Boolean(config.pagination)}
                 onChange={(e) => updateNodeData('config.pagination', e.target.checked)}
                 className="rounded"
               />
@@ -1091,6 +1091,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
