@@ -349,7 +349,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
               Layout Columns
             </label>
             <select
-              value={config.layout?.columns || 1}
+              value={Number((config.layout as Record<string, unknown>)?.columns) || 1}
               onChange={(e) => updateNodeData('config.layout.columns', parseInt(e.target.value))}
               className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
             >
@@ -1091,6 +1091,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
