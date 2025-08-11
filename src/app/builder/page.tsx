@@ -425,102 +425,21 @@ export default function WorkflowBuilder() {
           </div>
           <div className="flex-1 overflow-y-auto p-4">
             {selectedNode ? (
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Node ID
-                  </label>
-                  <input
-                    type="text"
-                    value={selectedNode.id}
-                    readOnly
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Node Type
-                  </label>
-                  <input
-                    type="text"
-                    value={selectedNode.type || 'default'}
-                    readOnly
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Label
-                  </label>
-                  <input
-                    type="text"
-                    value={selectedNode.data?.label || ''}
-                    onChange={(e) => {
-                      setNodes((nds) =>
-                        nds.map((node) =>
-                          node.id === selectedNode.id
-                            ? { ...node, data: { ...node.data, label: e.target.value } }
-                            : node
-                        )
-                      );
-                    }}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Position
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
-                    <input
-                      type="number"
-                      placeholder="X"
-                      value={selectedNode.position.x}
-                      onChange={(e) => {
-                        setNodes((nds) =>
-                          nds.map((node) =>
-                            node.id === selectedNode.id
-                              ? { ...node, position: { ...node.position, x: parseInt(e.target.value) || 0 } }
-                              : node
-                          )
-                        );
-                      }}
-                      className="px-3 py-2 border border-gray-300 rounded-md"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Y"
-                      value={selectedNode.position.y}
-                      onChange={(e) => {
-                        setNodes((nds) =>
-                          nds.map((node) =>
-                            node.id === selectedNode.id
-                              ? { ...node, position: { ...node.position, y: parseInt(e.target.value) || 0 } }
-                              : node
-                          )
-                        );
-                      }}
-                      className="px-3 py-2 border border-gray-300 rounded-md"
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-gray-200">
-                  <button
-                    onClick={() => {
-                      setNodes((nds) => nds.filter((node) => node.id !== selectedNode.id));
-                      setSelectedNode(null);
-                    }}
-                    className="w-full flex items-center justify-center space-x-2 px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-                  >
-                    <Trash2 size={16} />
-                    <span>Delete Node</span>
-                  </button>
-                </div>
-              </div>
+              <NodeInspector 
+                node={selectedNode} 
+                onUpdateNode={(updatedNode) => {
+                  setNodes((nds) =>
+                    nds.map((node) =>
+                      node.id === selectedNode.id ? updatedNode : node
+                    )
+                  );
+                  setSelectedNode(updatedNode);
+                }}
+                onDeleteNode={() => {
+                  setNodes((nds) => nds.filter((node) => node.id !== selectedNode.id));
+                  setSelectedNode(null);
+                }}
+              />
             ) : (
               <div className="text-center text-gray-500 py-8">
                 <Settings size={48} className="mx-auto mb-4 text-gray-300" />
@@ -533,6 +452,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
