@@ -205,8 +205,8 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
           <div>Type: {contentType || 'text'}</div>
           <div>Theme: {styling?.theme || 'default'}</div>
-          {styling?.responsive && <div>Responsive</div>}
-          {styling?.animation && <div>Animated</div>}
+          {Boolean(styling?.responsive) && <div>Responsive</div>}
+          {Boolean(styling?.animation) && <div>Animated</div>}
         </div>
         
         {styling?.customCSS && (
@@ -244,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
