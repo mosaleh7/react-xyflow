@@ -867,13 +867,11 @@ export default function WorkflowBuilder() {
         return {
           label: 'New Display',
           config: {
-            contentType: 'text',
-            content: { value: 'Sample content' },
-            styling: { theme: 'default' },
-            dataBinding: { enabled: false },
-            interactions: { clickable: false }
+            title: 'New Display',
+            content: { type: 'text', value: 'Sample content' },
+            layout: { width: 'auto', alignment: 'left' }
           }
-        } as DisplayNodeData;
+        };
       
       case 'actionNode':
         return {
@@ -1101,6 +1099,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
