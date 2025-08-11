@@ -643,7 +643,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             Layout Style
           </label>
           <select
-            value={config.layout?.style || 'tabs'}
+            value={String((config.layout as Record<string, unknown>)?.style || 'tabs')}
             onChange={(e) => updateNodeData('config.layout.style', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
           >
@@ -1094,6 +1094,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
