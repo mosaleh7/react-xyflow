@@ -193,7 +193,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
             <span className="text-xs text-yellow-700 font-medium">Data Bound</span>
             {dataBinding.source && (
               <span className="text-xs text-yellow-600">
-                → {dataBinding.source}
+                → {String(dataBinding.source)}
               </span>
             )}
           </div>
@@ -244,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
