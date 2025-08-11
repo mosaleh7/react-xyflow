@@ -49,7 +49,10 @@ import {
   MousePointer,
   Shield,
   Download,
-  Upload
+  Upload,
+  X,
+  ChevronDown,
+  ChevronRight
 } from 'lucide-react';
 
 // Define custom node types for React Flow
@@ -452,6 +455,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
