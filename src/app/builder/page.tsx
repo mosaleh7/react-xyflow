@@ -456,6 +456,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
 
   const renderActionNodeConfig = () => {
     const config = (node.data?.config as Record<string, unknown>) || {};
+    const confirmation = (config.confirmation as Record<string, unknown>) || {};
     
     return (
       <div className="space-y-4">
@@ -465,7 +466,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
           </label>
           <input
             type="text"
-            value={config.label || ''}
+            value={String(config.label || '')}
             onChange={(e) => updateNodeData('config.label', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
           />
@@ -476,7 +477,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             Action Type
           </label>
           <select
-            value={config.actionType || 'button'}
+            value={String(config.actionType || 'button')}
             onChange={(e) => updateNodeData('config.actionType', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
           >
@@ -1093,6 +1094,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
