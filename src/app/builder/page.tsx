@@ -532,7 +532,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
           </label>
         </div>
 
-        {config.confirmation?.enabled && (
+        {Boolean(confirmation.enabled) && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Confirmation Message
@@ -1094,6 +1094,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
