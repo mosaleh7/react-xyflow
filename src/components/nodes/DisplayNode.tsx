@@ -222,12 +222,13 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-600">Interactive</span>
             <div className="flex gap-1">
-              {data.actions?.map((action, index) => (
+              {Array.isArray((data as Record<string, unknown>).actions) && 
+                ((data as Record<string, unknown>).actions as Array<Record<string, unknown>>).map((action, index) => (
                 <button
                   key={index}
                   className="px-2 py-1 text-xs bg-indigo-100 text-indigo-600 rounded hover:bg-indigo-200"
                 >
-                  {action.label}
+                  {String(action.label)}
                 </button>
               ))}
             </div>
@@ -244,6 +245,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
