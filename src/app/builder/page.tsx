@@ -291,7 +291,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
           </div>
         </div>
 
-        {config.pagination && (
+        {Boolean(config.pagination) && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Page Size
@@ -1091,6 +1091,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
