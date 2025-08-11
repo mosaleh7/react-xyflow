@@ -62,7 +62,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
       {/* Node Header */}
       <div className="flex items-center gap-2 p-3 bg-red-50 border-b border-gray-200 rounded-t-lg">
         <Shield className="w-5 h-5 text-red-600" />
-        <span className="font-semibold text-gray-800">{title || 'Access Control'}</span>
+        <span className="font-semibold text-gray-800">{String(title || 'Access Control')}</span>
         <div className="ml-auto">
           {data.enforced ? (
             <Lock className="w-4 h-4 text-red-600" />
@@ -235,6 +235,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
     </div>
   );
 };
+
 
 
 
