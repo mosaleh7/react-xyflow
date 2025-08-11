@@ -119,7 +119,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
       {/* Submit Button Preview */}
       <div className="p-3 border-t border-gray-100 rounded-b-lg">
         <button className="w-full py-2 px-4 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 transition-colors">
-          {data.submitLabel || 'Submit Form'}
+          {String((data as Record<string, unknown>).submitLabel || 'Submit Form')}
         </button>
       </div>
 
@@ -132,6 +132,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
