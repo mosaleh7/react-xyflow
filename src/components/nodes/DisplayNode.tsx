@@ -191,9 +191,9 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
             <span className="text-xs text-yellow-700 font-medium">Data Bound</span>
-            {dataBinding?.source && (
+            {dataBinding?.dataSource && (
               <span className="text-xs text-yellow-600">
-                → {String(dataBinding.source)}
+                → {String(dataBinding.dataSource)}
               </span>
             )}
           </div>
@@ -244,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
