@@ -548,7 +548,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
   };
 
   const renderPermissionNodeConfig = () => {
-    const config = node.data?.config || {};
+    const config = (node.data?.config as Record<string, unknown>) || {};
     
     return (
       <div className="space-y-4">
@@ -1091,6 +1091,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
