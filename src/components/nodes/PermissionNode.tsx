@@ -108,7 +108,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
             );
           })}
 
-          {rules && rules.length > 4 && (
+          {Array.isArray(rules) && rules.length > 4 && (
             <div className="text-xs text-gray-500 text-center py-1">
               +{rules.length - 4} more rules
             </div>
@@ -235,6 +235,7 @@ export const PermissionNode: React.FC<PermissionNodeProps> = ({ data, selected }
     </div>
   );
 };
+
 
 
 
