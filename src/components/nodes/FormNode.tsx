@@ -68,7 +68,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
                 </div>
               ) : field.type === 'radio' ? (
                 <div className="space-y-1">
-                  {Array.isArray(field.options) && field.options.slice(0, 2).map((option: any, optIndex) => (
+                  {Array.isArray(field.options) && field.options.slice(0, 2).map((option: any, optIndex: number) => (
                     <div key={optIndex} className="flex items-center gap-2">
                       <div className="w-3 h-3 border border-gray-300 rounded-full bg-gray-50"></div>
                       <span className="text-xs text-gray-500">{option.label}</span>
@@ -132,6 +132,7 @@ export const FormNode: React.FC<FormNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
