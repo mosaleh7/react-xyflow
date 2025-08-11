@@ -186,7 +186,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
       </div>
 
       {/* Data Binding Info */}
-      {dataBinding?.enabled && (
+      {Boolean(dataBinding?.enabled) && (
         <div className="px-3 py-2 bg-yellow-50 border-t border-yellow-200">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
@@ -244,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
