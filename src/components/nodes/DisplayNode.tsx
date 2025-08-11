@@ -181,7 +181,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
       <div className="min-h-[100px]">
         <div className="p-3 text-center text-gray-500">
           <div className="text-sm font-medium">{contentType} Content</div>
-          <div className="text-xs mt-1">Preview: {content.value || 'No content'}</div>
+          <div className="text-xs mt-1">Preview: {String(content.value || 'No content')}</div>
         </div>
       </div>
 
@@ -244,6 +244,7 @@ export const DisplayNode: React.FC<DisplayNodeProps> = ({ data, selected }) => {
     </div>
   );
 };
+
 
 
 
