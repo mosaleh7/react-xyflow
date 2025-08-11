@@ -376,6 +376,8 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
 
   const renderDisplayNodeConfig = () => {
     const config = (node.data?.config as Record<string, unknown>) || {};
+    const content = (config.content as Record<string, unknown>) || {};
+    const layout = (config.layout as Record<string, unknown>) || {};
     
     return (
       <div className="space-y-4">
@@ -385,7 +387,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
           </label>
           <input
             type="text"
-            value={config.title || ''}
+            value={String(config.title || '')}
             onChange={(e) => updateNodeData('config.title', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
           />
@@ -396,7 +398,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             Content Type
           </label>
           <select
-            value={config.content?.type || 'text'}
+            value={String(content.type || 'text')}
             onChange={(e) => updateNodeData('config.content.type', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
           >
@@ -415,7 +417,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
             Content
           </label>
           <textarea
-            value={config.content?.value || ''}
+            value={String(content.value || '')}
             onChange={(e) => updateNodeData('config.content.value', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
             rows={4}
@@ -1091,6 +1093,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
