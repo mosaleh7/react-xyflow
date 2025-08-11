@@ -856,12 +856,12 @@ export default function WorkflowBuilder() {
         return {
           label: 'New Form Group',
           config: {
-            forms: [],
-            layout: { type: 'tabs' },
-            validation: { enabled: true },
-            styling: { theme: 'default' }
+            title: 'New Form Group',
+            layout: { style: 'tabs' },
+            validation: { validateAll: false },
+            submission: { confirmBeforeSubmit: false }
           }
-        } as FormGroupNodeData;
+        };
       
       case 'displayNode':
         return {
@@ -1101,6 +1101,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
