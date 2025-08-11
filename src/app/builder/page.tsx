@@ -431,7 +431,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
           </label>
           <div className="grid grid-cols-2 gap-2">
             <select
-              value={config.layout?.width || 'auto'}
+              value={String(layout.width || 'auto')}
               onChange={(e) => updateNodeData('config.layout.width', e.target.value)}
               className="px-3 py-2 border border-gray-300 rounded-md text-sm"
             >
@@ -440,7 +440,7 @@ const NodeInspector: React.FC<NodeInspectorProps> = ({ node, onUpdateNode, onDel
               <option value="fixed">Fixed Width</option>
             </select>
             <select
-              value={config.layout?.alignment || 'left'}
+              value={String(layout.alignment || 'left')}
               onChange={(e) => updateNodeData('config.layout.alignment', e.target.value)}
               className="px-3 py-2 border border-gray-300 rounded-md text-sm"
             >
@@ -1093,6 +1093,7 @@ export default function WorkflowBuilder() {
     </div>
   );
 }
+
 
 
 
